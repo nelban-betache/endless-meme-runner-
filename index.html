@@ -294,6 +294,99 @@ body { background:var(--bg); color:var(--text); transition:background .3s,color 
 .meme-row  { display:flex; gap:8px; margin-top:6px; }
 .meme-row .gbtn { width:auto; flex:1; padding:10px 0; font-size:clamp(15px,4.5vw,22px); }
 
+/* ── ABOUT PAGES ── */
+.about-card {
+  background:var(--panel);
+  border:3px solid var(--border);
+  border-radius:20px;
+  padding:22px 20px;
+  width:min(400px,92vw);
+  box-shadow:6px 6px 0 rgba(0,0,0,.5);
+  overflow-y:auto;
+  max-height:88vh;
+}
+.about-avatar {
+  width:82px; height:82px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#FF4444,#FF8800);
+  display:flex; align-items:center; justify-content:center;
+  font-size:40px; margin:0 auto 10px;
+  border:4px solid #000;
+  box-shadow:3px 3px 0 #000;
+  animation:float 3s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.about-name {
+  font-size:clamp(20px,6vw,32px);
+  color:var(--text);
+  text-align:center; letter-spacing:2px;
+  text-shadow:2px 2px 0 rgba(0,0,0,.4);
+  line-height:1.1; margin-bottom:2px;
+}
+.about-role {
+  font-family:'Comic Neue',cursive; font-weight:700;
+  font-size:clamp(11px,3.2vw,15px);
+  color:#FF8800; text-align:center;
+  margin:4px 0 12px; letter-spacing:1px;
+}
+.about-divider {
+  height:2px; border-radius:2px;
+  background:linear-gradient(90deg,transparent,var(--border),transparent);
+  margin:10px 0;
+}
+.about-section-title {
+  font-size:clamp(15px,4vw,20px);
+  color:#FFD700; letter-spacing:2px;
+  margin:8px 0 5px;
+}
+.about-body {
+  font-family:'Comic Neue',cursive; font-weight:700;
+  font-size:clamp(12px,3.3vw,14px);
+  color:var(--text); line-height:1.65;
+}
+.about-body p { margin-bottom:7px; }
+.about-tags { margin:6px 0; }
+.about-tag {
+  display:inline-block;
+  background:linear-gradient(135deg,#6677FF,#AA44FF);
+  color:#fff; border:2px solid #000;
+  border-radius:20px; padding:3px 11px;
+  font-family:'Bangers',cursive;
+  font-size:clamp(11px,3vw,14px);
+  letter-spacing:1px; margin:3px 2px;
+  box-shadow:2px 2px 0 #000;
+}
+.about-tag.orange { background:linear-gradient(135deg,#FF6B35,#FF8800); }
+.about-tag.green  { background:linear-gradient(135deg,#22AA66,#00CC88); }
+.about-tag.red    { background:linear-gradient(135deg,#FF4444,#cc0000); }
+.about-tag.gold   { background:linear-gradient(135deg,#FFD700,#FFA500); color:#000; }
+.about-stat {
+  display:flex; align-items:center; gap:10px;
+  background:rgba(255,255,255,.06);
+  border-radius:10px; padding:8px 12px; margin:5px 0;
+  border:1px solid rgba(255,255,255,.1);
+}
+.stat-icon { font-size:20px; flex-shrink:0; }
+.stat-text { font-family:'Comic Neue',cursive; font-weight:700; font-size:clamp(11px,3vw,14px); color:var(--text); line-height:1.4; }
+.stat-text b { color:#FFD700; }
+.game-logo-mini {
+  font-size:clamp(26px,8vw,42px);
+  color:#FF4444; text-shadow:3px 3px 0 #000;
+  letter-spacing:4px; text-align:center;
+  animation:titlePulse 2s ease infinite;
+  margin-bottom:4px;
+}
+.version-badge {
+  display:inline-block;
+  background:linear-gradient(135deg,#FFD700,#FFA500);
+  color:#000; border:2px solid #000;
+  border-radius:20px; padding:2px 14px;
+  font-family:'Bangers',cursive;
+  font-size:clamp(12px,3.5vw,16px);
+  letter-spacing:2px; margin-bottom:8px;
+  box-shadow:2px 2px 0 #000;
+}
+
 /* KEYFRAMES */
 @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 @keyframes memeIn {
@@ -319,6 +412,8 @@ body { background:var(--bg); color:var(--text); transition:background .3s,color 
   <button class="gbtn green" id="m-resume" style="display:none">⏩ RESUME</button>
   <button class="gbtn gold" id="m-scores">🏆 HIGH SCORES</button>
   <button class="gbtn purp" id="m-settings">⚙️ SETTINGS</button>
+  <button class="gbtn green" id="m-about-game">🎮 ABOUT THE GAME</button>
+  <button class="gbtn" style="background:linear-gradient(135deg,#e91e8c,#ff4d7a);color:#fff;" id="m-about-dev">👤 ABOUT THE DEVELOPER</button>
   <div class="credit">© NLBN · Endless Meme Runner</div>
 </div>
 
@@ -363,7 +458,7 @@ body { background:var(--bg); color:var(--text); transition:background .3s,color 
       <canvas id="c"></canvas>
     </div>
     <button id="jump-btn">👆 TAP TO JUMP!</button>
-    <div id="hint">SPACE / ↑ • Double jump! <br> @NLBN</div>
+    <div id="hint">SPACE / ↑ • Double jump!</div>
   </div>
 </div>
 
@@ -388,6 +483,136 @@ body { background:var(--bg); color:var(--text); transition:background .3s,color 
       <button class="gbtn red"  id="d-retry">🔁 RETRY</button>
       <button class="gbtn gray" id="d-menu">🏠 MENU</button>
     </div>
+  </div>
+</div>
+
+<!-- ════ PAGE: ABOUT THE GAME ════ -->
+<div id="pg-about-game" class="page">
+  <div class="about-card">
+    <div class="game-logo-mini">MEME RUNNER</div>
+    <div style="text-align:center">
+      <span class="version-badge">🎮 VERSION 1.0</span>
+    </div>
+
+    <div class="about-divider"></div>
+
+    <div class="about-section-title">📖 WHAT IS THIS?</div>
+    <div class="about-body">
+      <p>Meme Runner is an endless side-scrolling runner game where you dodge cacti and birds — and when you fail, the internet roasts you with a random meme. 😂</p>
+      <p>Inspired by the classic Chrome Dinosaur offline game, but with chaos, memes, and zero chill.</p>
+    </div>
+
+    <div class="about-divider"></div>
+
+    <div class="about-section-title">🕹️ HOW TO PLAY</div>
+    <div class="about-stat">
+      <span class="stat-icon">👆</span>
+      <div class="stat-text"><b>TAP / Click / Space / ↑</b> to jump over obstacles</div>
+    </div>
+    <div class="about-stat">
+      <span class="stat-icon">✌️</span>
+      <div class="stat-text"><b>Double Jump</b> — tap twice in the air for extra height!</div>
+    </div>
+    <div class="about-stat">
+      <span class="stat-icon">⚡</span>
+      <div class="stat-text"><b>Speed increases</b> the longer you survive — just like Chrome Dino!</div>
+    </div>
+    <div class="about-stat">
+      <span class="stat-icon">🌵</span>
+      <div class="stat-text"><b>Avoid Cacti & Birds</b> — one hit and it's meme time</div>
+    </div>
+
+    <div class="about-divider"></div>
+
+    <div class="about-section-title">✨ FEATURES</div>
+    <div class="about-tags">
+      <span class="about-tag green">♾️ Endless Play</span>
+      <span class="about-tag orange">⚡ Speed Ramp</span>
+      <span class="about-tag red">💀 25+ Memes</span>
+      <span class="about-tag">🏆 High Scores</span>
+      <span class="about-tag gold">🌗 Dark/Light Theme</span>
+      <span class="about-tag green">🎵 BGM + SFX</span>
+      <span class="about-tag orange">📱 Mobile Friendly</span>
+      <span class="about-tag red">⏸ Pause & Resume</span>
+    </div>
+
+    <div class="about-divider"></div>
+
+    <div class="about-section-title">🏅 SPEED TIERS</div>
+    <div class="about-body">
+      <p>The game starts at <b style="color:#4CAF50">Speed 1</b> and smoothly accelerates every frame. Survive long enough and you'll reach <b style="color:#FF4444">Speed 9</b> — absolute madness. Each new tier flashes a yellow warning on screen!</p>
+    </div>
+
+    <div class="about-divider"></div>
+    <div class="about-body" style="text-align:center;opacity:.6;font-size:11px">Made with 😂 by NLBN · 2026</div>
+    <button class="gbtn gray" id="ag-back" style="width:100%;margin-top:14px">← BACK</button>
+  </div>
+</div>
+
+<!-- ════ PAGE: ABOUT THE DEVELOPER ════ -->
+<div id="pg-about-dev" class="page">
+  <div class="about-card">
+    <div class="about-avatar">👨‍💻</div>
+    <div class="about-name">NELBAN BAIS<br>BETACHE</div>
+    <div class="about-role">🎓 BSIT Graduate · Game Developer · Meme Enthusiast</div>
+
+    <div class="about-divider"></div>
+
+    <div class="about-section-title">🎓 EDUCATION</div>
+    <div class="about-stat">
+      <span class="stat-icon">🏫</span>
+      <div class="stat-text">
+        <b>Madridejos Community College</b><br>
+        Bachelor of Science in Information Technology
+      </div>
+    </div>
+    <div class="about-stat">
+      <span class="stat-icon">📅</span>
+      <div class="stat-text"><b>BSIT Graduate</b> — Madridejos, Cebu, Philippines</div>
+    </div>
+
+    <div class="about-divider"></div>
+
+    <div class="about-section-title">💻 ABOUT NELBAN</div>
+    <div class="about-body">
+      <p>Hi! I'm <b>Nelban</b> — a passionate IT graduate who loves building things that make people laugh, smile, and rage-quit (in a fun way 😈).</p>
+      <p>Meme Runner started as a fun side project to practice game development with web technologies, and ended up being something I'm genuinely proud of.</p>
+      <p>When I'm not coding, I'm probably watching memes, touching grass, or pretending to touch grass. 🌿</p>
+    </div>
+
+    <div class="about-divider"></div>
+
+    <div class="about-section-title">🛠️ TECH USED</div>
+    <div class="about-tags">
+      <span class="about-tag gold">HTML5</span>
+      <span class="about-tag orange">CSS3</span>
+      <span class="about-tag green">Vanilla JS</span>
+      <span class="about-tag">Canvas API</span>
+      <span class="about-tag red">Web Audio API</span>
+      <span class="about-tag orange">LocalStorage</span>
+    </div>
+
+    <div class="about-divider"></div>
+
+    <div class="about-section-title">🏆 SKILLS</div>
+    <div class="about-tags">
+      <span class="about-tag green">Web Development</span>
+      <span class="about-tag">Game Design</span>
+      <span class="about-tag orange">UI / UX</span>
+      <span class="about-tag red">Problem Solving</span>
+      <span class="about-tag gold">Meme Curation 😂</span>
+    </div>
+
+    <div class="about-divider"></div>
+
+    <div class="about-body" style="text-align:center">
+      <p>🙏 <b>Special thanks</b> to everyone who played this game and got roasted by a meme. You are the reason this exists.</p>
+    </div>
+
+    <div class="about-body" style="text-align:center;opacity:.55;font-size:11px;margin-top:6px">
+      © 2026 Nelban Bais Betache · NLBN · All Rights Reserved
+    </div>
+    <button class="gbtn gray" id="ad-back" style="width:100%;margin-top:14px">← BACK</button>
   </div>
 </div>
 
@@ -830,17 +1055,21 @@ function wire(id, fn) {
   el.addEventListener('click', fn);
 }
 
-wire('m-play',     startGame);
-wire('m-resume',   resumeGame);
-wire('m-scores',   ()=>{ renderHS(); go('pg-scores'); });
-wire('m-settings', ()=>go('pg-settings'));
-wire('s-back',     ()=>go('pg-menu'));
-wire('hs-back',    ()=>go('pg-menu'));
+wire('m-play',        startGame);
+wire('m-resume',      resumeGame);
+wire('m-scores',      ()=>{ renderHS(); go('pg-scores'); });
+wire('m-settings',    ()=>go('pg-settings'));
+wire('m-about-game',  ()=>go('pg-about-game'));
+wire('m-about-dev',   ()=>go('pg-about-dev'));
+wire('s-back',        ()=>go('pg-menu'));
+wire('hs-back',       ()=>go('pg-menu'));
+wire('ag-back',       ()=>go('pg-menu'));
+wire('ad-back',       ()=>go('pg-menu'));
 wire('pause-icon-btn', pauseGame);
-wire('p-resume',   resumeGame);
-wire('p-menu',     toMenu);
-wire('d-retry',    startGame);
-wire('d-menu',     toMenu);
+wire('p-resume',      resumeGame);
+wire('p-menu',        toMenu);
+wire('d-retry',       startGame);
+wire('d-menu',        toMenu);
 
 // ── THE JUMP BUTTON ──
 // Using pointerdown for instant response + no delay
@@ -878,6 +1107,61 @@ document.addEventListener('keydown', e => {
 // ── idle render ──
 P=mkPlayer(); stars=mkStars(); clouds=[]; obs=[];
 draw();
+
+// ══════════════════════════════════════════════
+//  CODE PROTECTION
+//  © Nelban Bais Betache — All Rights Reserved
+// ══════════════════════════════════════════════
+(function() {
+  'use strict';
+
+  // ── 1. BLOCK RIGHT-CLICK CONTEXT MENU ──
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault(); e.stopPropagation(); return false;
+  }, true);
+
+  // ── 2. BLOCK DEVTOOLS KEYBOARD SHORTCUTS ──
+  document.addEventListener('keydown', function(e) {
+    const ctrl = e.ctrlKey || e.metaKey;
+    // F12
+    if (e.key === 'F12' || e.keyCode === 123) {
+      e.preventDefault(); e.stopPropagation(); return false;
+    }
+    // Ctrl+Shift+I  (Inspect)
+    if (ctrl && e.shiftKey && (e.key==='I'||e.key==='i')) {
+      e.preventDefault(); e.stopPropagation(); return false;
+    }
+    // Ctrl+Shift+J  (Console)
+    if (ctrl && e.shiftKey && (e.key==='J'||e.key==='j')) {
+      e.preventDefault(); e.stopPropagation(); return false;
+    }
+    // Ctrl+Shift+C  (Element picker)
+    if (ctrl && e.shiftKey && (e.key==='C'||e.key==='c')) {
+      e.preventDefault(); e.stopPropagation(); return false;
+    }
+    // Ctrl+U  (View source)
+    if (ctrl && !e.shiftKey && (e.key==='U'||e.key==='u')) {
+      e.preventDefault(); e.stopPropagation(); return false;
+    }
+    // Ctrl+S  (Save page)
+    if (ctrl && !e.shiftKey && (e.key==='S'||e.key==='s')) {
+      e.preventDefault(); e.stopPropagation(); return false;
+    }
+    // Ctrl+A  (Select all)
+    if (ctrl && (e.key==='A'||e.key==='a')) {
+      e.preventDefault(); e.stopPropagation(); return false;
+    }
+  }, true);
+
+  // ── 3. BLOCK TEXT SELECTION & COPY ──
+  document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; }, true);
+  document.addEventListener('copy',        function(e) { e.preventDefault(); return false; }, true);
+  document.addEventListener('cut',         function(e) { e.preventDefault(); return false; }, true);
+
+  // ── 4. DISABLE DRAG ──
+  document.addEventListener('dragstart',   function(e) { e.preventDefault(); return false; }, true);
+
+})();
 </script>
 </body>
 </html>
